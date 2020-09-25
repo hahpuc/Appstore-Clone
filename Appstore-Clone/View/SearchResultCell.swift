@@ -70,10 +70,10 @@ class SearchResultCell: UICollectionViewCell {
         super.init(frame: frame)
         backgroundColor = .yellow
         
-        let labelStackView = UIStackView(arrangedSubviews: [
+        
+        let labelStackView = VerticalStackView(arrangedSubviews: [
             nameLabel, categoryLabel, RatingLabel
         ])
-        labelStackView.axis = .vertical
                 
         let infoTopStackView = UIStackView(arrangedSubviews: [
             iconImageView, labelStackView, getButton
@@ -87,12 +87,11 @@ class SearchResultCell: UICollectionViewCell {
         screenshotStackView.spacing = 12;
         screenshotStackView.distribution = .fillEqually
         
-        let overralStackView = UIStackView(arrangedSubviews: [
-            infoTopStackView, screenshotStackView
-        ])
-        overralStackView.axis = .vertical
-        overralStackView.spacing = 16
         
+        let overralStackView = VerticalStackView(arrangedSubviews: [
+            infoTopStackView, screenshotStackView
+        ], spacing: 16)
+
         addSubview(overralStackView)
         
         // User Helper: UIView+Layout.swift
