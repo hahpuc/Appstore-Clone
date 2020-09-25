@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		41D29BC3251D749A00D8DE6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29BC2251D749A00D8DE6F /* AppDelegate.swift */; };
 		41D29BC5251D749A00D8DE6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29BC4251D749A00D8DE6F /* SceneDelegate.swift */; };
-		41D29BC7251D749A00D8DE6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29BC6251D749A00D8DE6F /* ViewController.swift */; };
 		41D29BCC251D749B00D8DE6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D29BCB251D749B00D8DE6F /* Assets.xcassets */; };
 		41D29BCF251D749B00D8DE6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D29BCD251D749B00D8DE6F /* LaunchScreen.storyboard */; };
 		41D29BDA251D749B00D8DE6F /* Appstore_CloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29BD9251D749B00D8DE6F /* Appstore_CloneTests.swift */; };
 		41D29BE5251D749B00D8DE6F /* Appstore_CloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29BE4251D749B00D8DE6F /* Appstore_CloneUITests.swift */; };
 		41D29C13251D7FC800D8DE6F /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29C12251D7FC800D8DE6F /* BaseTabViewController.swift */; };
+		41D29C1F251D8A7900D8DE6F /* AppSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29C1E251D8A7900D8DE6F /* AppSearchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 		41D29BBF251D749A00D8DE6F /* Appstore-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appstore-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D29BC2251D749A00D8DE6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41D29BC4251D749A00D8DE6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		41D29BC6251D749A00D8DE6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		41D29BCB251D749B00D8DE6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41D29BCE251D749B00D8DE6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41D29BD0251D749B00D8DE6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		41D29BE4251D749B00D8DE6F /* Appstore_CloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appstore_CloneUITests.swift; sourceTree = "<group>"; };
 		41D29BE6251D749B00D8DE6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41D29C12251D7FC800D8DE6F /* BaseTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
+		41D29C1E251D8A7900D8DE6F /* AppSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +99,9 @@
 		41D29BC1251D749A00D8DE6F /* Appstore-Clone */ = {
 			isa = PBXGroup;
 			children = (
+				41D29C1A251D8A1B00D8DE6F /* Controller */,
 				41D29BC2251D749A00D8DE6F /* AppDelegate.swift */,
 				41D29BC4251D749A00D8DE6F /* SceneDelegate.swift */,
-				41D29C12251D7FC800D8DE6F /* BaseTabViewController.swift */,
-				41D29BC6251D749A00D8DE6F /* ViewController.swift */,
 				41D29BCB251D749B00D8DE6F /* Assets.xcassets */,
 				41D29BCD251D749B00D8DE6F /* LaunchScreen.storyboard */,
 				41D29BD0251D749B00D8DE6F /* Info.plist */,
@@ -126,6 +125,15 @@
 				41D29BE6251D749B00D8DE6F /* Info.plist */,
 			);
 			path = "Appstore-CloneUITests";
+			sourceTree = "<group>";
+		};
+		41D29C1A251D8A1B00D8DE6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41D29C12251D7FC800D8DE6F /* BaseTabViewController.swift */,
+				41D29C1E251D8A7900D8DE6F /* AppSearchController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,10 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41D29BC7251D749A00D8DE6F /* ViewController.swift in Sources */,
 				41D29BC3251D749A00D8DE6F /* AppDelegate.swift in Sources */,
 				41D29BC5251D749A00D8DE6F /* SceneDelegate.swift in Sources */,
 				41D29C13251D7FC800D8DE6F /* BaseTabViewController.swift in Sources */,
+				41D29C1F251D8A7900D8DE6F /* AppSearchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
