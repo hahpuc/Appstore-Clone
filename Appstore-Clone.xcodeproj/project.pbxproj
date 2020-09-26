@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		410542B0251F1FC6005D0C28 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410542AF251F1FC6005D0C28 /* UIView+Layout.swift */; };
 		4115BDB7251F798C005A8656 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4115BDB6251F798C005A8656 /* SearchResult.swift */; };
+		4115BDBD251F8564005A8656 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4115BDBC251F8564005A8656 /* Service.swift */; };
 		41906014251D926D003F4D4A /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41906013251D926D003F4D4A /* SearchResultCell.swift */; };
 		41AD4396251DDF4700817674 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AD4395251DDF4700817674 /* VerticalStackView.swift */; };
 		41D29BC3251D749A00D8DE6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D29BC2251D749A00D8DE6F /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		410542AF251F1FC6005D0C28 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		4115BDB6251F798C005A8656 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		4115BDBC251F8564005A8656 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		41906013251D926D003F4D4A /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		41AD4395251DDF4700817674 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		41D29BBF251D749A00D8DE6F /* Appstore-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appstore-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +94,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4115BDBB251F8554005A8656 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4115BDBC251F8564005A8656 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		4190600A251D91FE003F4D4A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		41D29BC1251D749A00D8DE6F /* Appstore-Clone */ = {
 			isa = PBXGroup;
 			children = (
+				4115BDBB251F8554005A8656 /* Service */,
 				4115BDB2251F771B005A8656 /* Model */,
 				41906018251DBB6B003F4D4A /* Helper  */,
 				4190600A251D91FE003F4D4A /* View */,
@@ -306,6 +317,7 @@
 				4115BDB7251F798C005A8656 /* SearchResult.swift in Sources */,
 				41D29C13251D7FC800D8DE6F /* BaseTabViewController.swift in Sources */,
 				41D29C1F251D8A7900D8DE6F /* AppSearchController.swift in Sources */,
+				4115BDBD251F8564005A8656 /* Service.swift in Sources */,
 				41906014251D926D003F4D4A /* SearchResultCell.swift in Sources */,
 				410542B0251F1FC6005D0C28 /* UIView+Layout.swift in Sources */,
 				41AD4396251DDF4700817674 /* VerticalStackView.swift in Sources */,
