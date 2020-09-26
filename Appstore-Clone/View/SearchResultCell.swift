@@ -68,8 +68,6 @@ class SearchResultCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
-        
         
         let labelStackView = VerticalStackView(arrangedSubviews: [
             nameLabel, categoryLabel, RatingLabel
