@@ -17,6 +17,41 @@ class AppSearchController: UICollectionViewController, UICollectionViewDelegateF
         collectionView.backgroundColor = .white
         
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellID)
+        
+        fetchITunesApps()
+    }
+    
+    fileprivate func fetchITunesApps(){
+        let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
+        guard let url = URL(string: urlString) else { return }
+        
+        // fetch data from intenet
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            if let err = err {
+                print("Failed to fetch app: ", err)
+            }
+            
+            // Success
+            
+//            print(data)
+//            print(String(data: data!, encoding: .utf8))
+            
+            guard let data = data else { return }
+            
+            do {
+                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+                
+                //print(searchResult)
+                
+                searchResult.results.forEach({print($0.trackName, $0.primaryGenreName)})
+                 
+            } catch let jsonErr {
+                print("Failed to decode JSON", jsonErr)
+            }
+            
+            
+            
+        }.resume() // fires off the request
     }
     
     // Add UICollectionViewDelegateFlowLayout to access this func

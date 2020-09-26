@@ -9,7 +9,7 @@ import UIKit
 
 class SearchResultCell: UICollectionViewCell {
     
-    // Initialize components
+    // MARK: - Initialize components
     let iconImageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .red
@@ -41,7 +41,7 @@ class SearchResultCell: UICollectionViewCell {
         return text
     }()
     
-    
+
     let getButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("GET", for: .normal)
@@ -49,10 +49,10 @@ class SearchResultCell: UICollectionViewCell {
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
         button.backgroundColor = UIColor(white: 0.95, alpha: 1)
         button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        button.layer.cornerRadius = 12
         
         return button
     }()
-    
     
     lazy var screenshot1ImageView = self.createScreenshotImageView()
     lazy var screenshot2ImageView = self.createScreenshotImageView()
@@ -61,6 +61,7 @@ class SearchResultCell: UICollectionViewCell {
     func createScreenshotImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
+        imageView.layer.cornerRadius = 12 
         
         return imageView;
     }
