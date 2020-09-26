@@ -1,0 +1,6 @@
+framework module Pods_Appstore_CloneTests {
+  umbrella header "Pods-Appstore-CloneTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -37,7 +38,6 @@ class AppSearchController: UICollectionViewController, UICollectionViewDelegateF
             }
         }
         
-        
     }
     
     // Add UICollectionViewDelegateFlowLayout to access this func
@@ -60,6 +60,20 @@ class AppSearchController: UICollectionViewController, UICollectionViewDelegateF
         cell.categoryLabel.text = appResult.primaryGenreName
         
         cell.RatingLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
+        
+        let url = URL(string: appResult.artworkUrl100)
+        cell.iconImageView.sd_setImage(with: url)
+        
+        cell.screenshot1ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[0]))
+        
+        if appResult.screenshotUrls.count > 1 {
+            cell.screenshot2ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
+        }
+        
+        if appResult.screenshotUrls.count > 2 {
+            cell.screenshot3ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
+        }
+        
         
         return cell
     }
