@@ -8,9 +8,20 @@
 import UIKit
 import SDWebImage
 
-class AppSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class AppSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate let cellID = "cell111"
+    
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    
+    fileprivate let enterSearchTermLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please enter search term above..."
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +30,55 @@ class AppSearchController: UICollectionViewController, UICollectionViewDelegateF
         
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellID)
         
-        fetchITunesApps()
+        collectionView.addSubview(enterSearchTermLabel)
+        enterSearchTermLabel.fillSuperview(padding: .init(top: 100, left: 50, bottom: 0, right: 50))
+        
+        setUpSearchBar()
+        
+        // fetchITunesApps()
+    }
+    
+    fileprivate func setUpSearchBar() {
+        definesPresentationContext = true
+        navigationItem.searchController = self.searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        
+    }
+    
+    var timer: Timer?
+
+    // - MARK: SearchBar TextEdit
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        
+        // introduce some delay befor performing the search
+        // throttling the search: If don't have timer object, the screen will has flash
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            
+            // Fetch data using iTunes Search APIs
+            Service.shared.fetchApps(searchTerm: searchText) { (resul, error) in
+                
+                if let error = error {
+                    print("Failed to fetch data: ", error)
+                    return
+                }
+                
+                self.appResults = resul
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        })
     }
     
     fileprivate var appResults = [Result]()
     
     // MARK: - Fetch Itune Search
     fileprivate func fetchITunesApps(){
-        Service.shared.fetchApps { (result, err) in
+        Service.shared.fetchApps(searchTerm: "instagram") { (result, err) in
             if let err = err {
                 print("Failed to fetch data: ", err)
                 return
@@ -47,6 +99,7 @@ class AppSearchController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        enterSearchTermLabel.isHidden = appResults.count != 0
         return appResults.count
     }
     

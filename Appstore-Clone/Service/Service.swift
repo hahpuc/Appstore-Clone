@@ -13,10 +13,10 @@ class Service {
     
     // MARK: - Decode and Fetch Itune Search
 
-    func fetchApps(comletion: @escaping([Result], Error?) -> ()){
+    func fetchApps(searchTerm: String, comletion: @escaping([Result], Error?) -> ()){
         print("Fetching Itunes apps from Service Layer")
         
-        let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
+        let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
 
         guard let url = URL(string: urlString) else { return }
 
