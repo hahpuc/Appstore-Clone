@@ -46,6 +46,7 @@ class SearchResultCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let text = UILabel()
         text.text = "App name"
+        text.font = .systemFont(ofSize: 18)
         
         return text
     }()
@@ -53,6 +54,8 @@ class SearchResultCell: UICollectionViewCell {
     let categoryLabel: UILabel = {
         let text = UILabel()
         text.text = "Photo and Videos"
+        text.font = .systemFont(ofSize: 16)
+        text.textColor = .gray
         
         return text
     }()
@@ -60,6 +63,8 @@ class SearchResultCell: UICollectionViewCell {
     let RatingLabel: UILabel = {
         let text = UILabel()
         text.text = "9.26M"
+        text.font = .systemFont(ofSize: 16)
+        text.textColor = .gray
         
         return text
     }()

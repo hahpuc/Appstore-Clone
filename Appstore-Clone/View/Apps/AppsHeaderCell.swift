@@ -10,7 +10,7 @@ import UIKit
 class AppsHeaderCell: UICollectionViewCell {
     
     let companyLabel = UILabel(text: "Butter Royale", font: .systemFont(ofSize: 24))
-    let titleLabel = UILabel(text: "Try a wild battle royale", font: .systemFont(ofSize: 20))
+    let titleLabel = UILabel(text: "Try a wild battle royale", font: .systemFont(ofSize: 18))
     
     let imageView = UIImageView(cornerRadius: 8)
     

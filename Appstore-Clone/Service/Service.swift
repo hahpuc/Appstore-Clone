@@ -55,4 +55,41 @@ class Service {
         }.resume() // fires off the request
     }
     
+    // MARK: Fetch Game JSON
+    
+    func fetchGames(completion: @escaping (AppGroup?, Error?) -> ()) {
+        guard let url = URL(string: "https://rss.itunes.apple.com/api/v1/vn/ios-apps/top-free/games/50/explicit.json") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            if let err = err {
+                completion(nil, err)
+                return
+            }
+            
+            guard let data = data else { return }
+
+            do {
+                let appGroup = try JSONDecoder().decode(AppGroup.self, from: data)
+                //print("TAG", appGroup.feed.results)
+                
+                // Success
+                appGroup.feed.results.forEach { (FeedResult) in
+                    print("TAG", FeedResult.name)
+                } 
+                
+                completion(appGroup, nil)
+
+            } catch let jsonErr {
+                completion(nil, err)
+                print("Failed to decode JSON", jsonErr)
+                
+            }
+            
+        }.resume()
+        
+        
+        
+        
+    }
+    
 }

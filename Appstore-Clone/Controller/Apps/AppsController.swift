@@ -20,6 +20,20 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
         
         // Nested Header Collection Cell in to AppController
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headID)
+        
+        fetchData()
+    }
+    
+    // MARK: - Fetch Data
+    fileprivate func fetchData() {
+        print("Tag: ","fetching new JSON data ...")
+        Service.shared.fetchGames { (appGroup, err) in
+            if let err = err {
+                print("Failed to fetch game:", err)
+            }
+            
+            print("TAG", appGroup?.feed.results)
+        }
     }
     
     // MARK: - Set up Header View Cell
