@@ -24,25 +24,70 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
         fetchData()
     }
     
+    //var freeApps: AppGroup?
+    var groups = [AppGroup]()
+    
     // MARK: - Fetch Data
     fileprivate func fetchData() {
         print("Tag: ","fetching new JSON data ...")
-        Service.shared.fetchGames { (appGroup, err) in
-            if let err = err {
-                print("Failed to fetch game:", err)
+        
+        // Help you sync your data fetches together
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        Service.shared.fetchTopCrossing { (appGroup, err) in
+            dispatchGroup.leave()
+            if let group = appGroup {
+                self.groups.append(group)
             }
             
-            //print("TAG", appGroup?.feed.results)
-            self.freeApps = appGroup
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            
+            print("Done", " with Top Crossing")
+        }
+        
+        dispatchGroup.enter()
+        Service.shared.fetchFreeGames { (appGroup, err) in
+            dispatchGroup.leave()
+            if let group = appGroup {
+                self.groups.append(group)
+            }
+            
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
 
             }
+            
+            print("Done", " with Free Game")
+
+        }
+        
+        dispatchGroup.enter()
+        Service.shared.fetchPaidGames() { (appGroup, err) in
+            dispatchGroup.leave()
+            if let group = appGroup {
+                self.groups.append(group)
+            }
+            
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+
+            }
+            
+            print("Done", " with Paid Game")
+
+        }
+        
+        // completion
+        dispatchGroup.notify(queue: .main) {
+            print("Done","Completed your dispatch group task")
         }
     }
-    
-    var freeApps: AppGroup?
+
     
     // MARK: - Set up Header View Cell
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -58,14 +103,14 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Set up Collection View Cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return groups.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! AppsGroupCell
         
-        cell.titleLabel.text = freeApps?.feed.title
-        cell.horizontalController.appGroup = freeApps
+        cell.titleLabel.text = groups[indexPath.row].feed.title
+        cell.horizontalController.appGroup = groups[indexPath.row]
         cell.horizontalController.collectionView.reloadData()
         return cell
     }

@@ -56,11 +56,28 @@ class Service {
     }
     
     // MARK: Fetch Game JSON
-    
-    func fetchGames(completion: @escaping (AppGroup?, Error?) -> ()) {
+
+    func fetchFreeGames(completion: @escaping (AppGroup?, Error?) -> ()) {
         
-        let urlSring = "https://rss.itunes.apple.com/api/v1/vn/ios-apps/top-free/games/50/explicit.json"
-        guard let url = URL(string: urlSring) else { return }
+        let urlString = "https://rss.itunes.apple.com/api/v1/vn/ios-apps/top-free/games/50/explicit.json"
+        fetchAppGroup(urlString: urlString, completion: completion)
+    }
+    
+    func fetchPaidGames(completion: @escaping (AppGroup?, Error?) -> ()) {
+        
+        let urlString = "https://rss.itunes.apple.com/api/v1/vn/ios-apps/top-paid/all/50/explicit.json"
+        fetchAppGroup(urlString: urlString, completion: completion)
+    }
+    
+    func fetchTopCrossing(completion: @escaping (AppGroup?, Error?) -> ()) {
+        
+        let urlString = "https://rss.itunes.apple.com/api/v1/vn/ios-apps/top-grossing/all/50/explicit.json"
+        fetchAppGroup(urlString: urlString, completion: completion)
+    }
+
+    // Helper
+    func fetchAppGroup(urlString: String, completion: @escaping (AppGroup?, Error?) -> Void) {
+        guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             if let err = err {
@@ -77,7 +94,7 @@ class Service {
                 // Success
                 appGroup.feed.results.forEach { (FeedResult) in
                     print("TAG", FeedResult.name)
-                } 
+                }
                 
                 completion(appGroup, nil)
 
@@ -88,10 +105,5 @@ class Service {
             }
             
         }.resume()
-        
-        
-        
-        
     }
-    
 }
