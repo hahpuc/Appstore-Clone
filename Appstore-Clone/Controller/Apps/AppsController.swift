@@ -32,9 +32,17 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
                 print("Failed to fetch game:", err)
             }
             
-            print("TAG", appGroup?.feed.results)
+            //print("TAG", appGroup?.feed.results)
+            self.freeApps = appGroup
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+
+            }
         }
     }
+    
+    var freeApps: AppGroup?
     
     // MARK: - Set up Header View Cell
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -50,11 +58,15 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Set up Collection View Cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! AppsGroupCell
+        
+        cell.titleLabel.text = freeApps?.feed.title
+        cell.horizontalController.appGroup = freeApps
+        cell.horizontalController.collectionView.reloadData()
         return cell
     }
     
