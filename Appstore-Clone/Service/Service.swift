@@ -55,8 +55,7 @@ class Service {
         }.resume() // fires off the request
     }
     
-    // MARK: Fetch Game JSON
-
+    // MARK: -Fetch Game JSON
     func fetchFreeGames(completion: @escaping (AppGroup?, Error?) -> ()) {
         
         let urlString = "https://rss.itunes.apple.com/api/v1/vn/ios-apps/top-free/games/50/explicit.json"
@@ -105,5 +104,9 @@ class Service {
             }
             
         }.resume()
+    }
+    
+    func fetchSocialApps() {
+        
     }
 }
