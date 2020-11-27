@@ -59,14 +59,14 @@ class AppSearchController: BaseListController, UICollectionViewDelegateFlowLayou
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             
             // Fetch data using iTunes Search APIs
-            Service.shared.fetchApps(searchTerm: searchText) { (resul, error) in
+            Service.shared.fetchApps(searchTerm: searchText) { (res, error) in
                 
                 if let error = error {
                     print("Failed to fetch data: ", error)
                     return
                 }
                 
-                self.appResults = resul
+                self.appResults = res?.results ?? []
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -78,13 +78,13 @@ class AppSearchController: BaseListController, UICollectionViewDelegateFlowLayou
     
     // MARK: - Fetch Itune Search
     fileprivate func fetchITunesApps(){
-        Service.shared.fetchApps(searchTerm: "instagram") { (result, err) in
+        Service.shared.fetchApps(searchTerm: "instagram") { (res, err) in
             if let err = err {
                 print("Failed to fetch data: ", err)
                 return
             }
             
-            self.appResults = result
+            self.appResults = res?.results ?? []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }

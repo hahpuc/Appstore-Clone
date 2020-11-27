@@ -11,6 +11,9 @@ import UIKit
 class AppsHeaderHorizontalController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     fileprivate let cellID = "123das"
+    
+    var socialApps = [SociallApp]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,12 +28,17 @@ class AppsHeaderHorizontalController: BaseListController, UICollectionViewDelega
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return 3 //socialApps.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! AppsHeaderCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)  as! AppsHeaderCell
         
+//        cell.companyLabel.text = socialApps[indexPath.row].name
+//        cell.imageView.sd_setImage(with: URL(string: socialApps[indexPath.row].imageUrl))
+//        cell.titleLabel.text = socialApps[indexPath.row].tagline
+//        cell.titleLabel
+//        cell.imageView
         
         return cell
     }

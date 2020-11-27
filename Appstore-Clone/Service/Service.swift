@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Service {
     
@@ -13,49 +14,44 @@ class Service {
     
     // MARK: - Decode and Fetch Itune Search
 
-    func fetchApps(searchTerm: String, comletion: @escaping([Result], Error?) -> ()){
+    func fetchApps(searchTerm: String, completion: @escaping(SearchResult?, Error?) -> ()){
         print("Fetching Itunes apps from Service Layer")
         
         let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
+        
+        fetchGenericJSONData(urlString: urlString, completion: completion)
 
-        guard let url = URL(string: urlString) else { return }
-
-        // fetch data from intenet
-        URLSession.shared.dataTask(with: url) { (data, resp, err) in
-            if let err = err {
-                print("Failed to fetch app: ", err)
-                comletion([], nil)
-                return
-            }
-
-            // Success
-//            print(data)
-//            print(String(data: data!, encoding: .utf8))
-            guard let data = data else { return }
-
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                    
-                comletion(searchResult.results, nil)
-                
-                /* This is code local in AppSearchController
-                self.appResults = searchResult.results
-
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }*/
-
-            } catch let jsonErr {
-                print("Failed to decode JSON", jsonErr)
-                comletion([], jsonErr)
-            }
-
-
-
-        }.resume() // fires off the request
+//        guard let url = URL(string: urlString) else { return }
+//
+//        // fetch data from intenet
+//        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+//            if let err = err {
+//                print("Failed to fetch app: ", err)
+//                completion([], nil)
+//                return
+//            }
+//
+//            // Success
+////            print(data)
+////            print(String(data: data!, encoding: .utf8))
+//            guard let data = data else { return }
+//
+//            do {
+//                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+//
+//                completion(searchResult.results, nil)
+//
+//            } catch let jsonErr {
+//                print("Failed to decode JSON", jsonErr)
+//                completion([], jsonErr)
+//            }
+//
+//
+//
+//        }.resume() // fires off the request
     }
     
-    // MARK: -Fetch Game JSON
+    // MARK: -Fetch JSON Apps Screen
     func fetchFreeGames(completion: @escaping (AppGroup?, Error?) -> ()) {
         
         let urlString = "https://rss.itunes.apple.com/api/v1/vn/ios-apps/top-free/games/50/explicit.json"
@@ -74,9 +70,24 @@ class Service {
         fetchAppGroup(urlString: urlString, completion: completion)
     }
 
-    // Helper
+    // Helper Fetch App Group
     func fetchAppGroup(urlString: String, completion: @escaping (AppGroup?, Error?) -> Void) {
+        fetchGenericJSONData(urlString: urlString, completion: completion)
+    }
+    
+    // Header in App Screen
+    func fetchSocailApp( completion: @escaping ([SociallApp]?, Error?) -> Void) {
+        
+        let urlString = "http://api.letsbuildthatapp.com/appstore/social"
+        
+        fetchGenericJSONData(urlString: urlString, completion: completion)
+    }
+    
+    // MARK: GENERIC JSON FUNCTION
+    func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T?, Error?) -> ()) {
         guard let url = URL(string: urlString) else { return }
+        
+        print("T is: ", T.self)
         
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             if let err = err {
@@ -87,15 +98,12 @@ class Service {
             guard let data = data else { return }
 
             do {
-                let appGroup = try JSONDecoder().decode(AppGroup.self, from: data)
+                
+                let objects = try JSONDecoder().decode(T.self, from: data)
                 //print("TAG", appGroup.feed.results)
                 
                 // Success
-                appGroup.feed.results.forEach { (FeedResult) in
-                    print("TAG", FeedResult.name)
-                }
-                
-                completion(appGroup, nil)
+                completion(objects, nil)
 
             } catch let jsonErr {
                 completion(nil, err)
@@ -106,7 +114,29 @@ class Service {
         }.resume()
     }
     
-    func fetchSocialApps() {
-        
-    }
 }
+
+
+//class Stack<T: Decodable> {
+//    var items = [T]()
+//    
+//    func push(item: T) {
+//        items.append(item)
+//    }
+//    
+//    func pop() -> T? {
+//        return items.last
+//    }
+//}
+//
+//
+//
+//func dummyFunc() {
+//    
+//    let stackOfStrings = Stack<String>()
+//    stackOfStrings.push(item: "Has to be String")
+//    
+//    let stackOfInts = Stack<Int>()
+//    stackOfInts.push(item: 1)
+//}
+
