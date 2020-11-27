@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
+class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
     
     fileprivate let cellID = "123dfas"
     fileprivate let headID = "HeadID"

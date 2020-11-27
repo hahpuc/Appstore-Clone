@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class AppSearchController: BaseListController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class AppSearchController: VerticalController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate let cellID = "cell111"
     
