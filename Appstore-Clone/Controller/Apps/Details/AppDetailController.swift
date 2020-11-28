@@ -9,6 +9,8 @@ import UIKit
 
 class AppDetailController: VerticalController, UICollectionViewDelegateFlowLayout {
     
+    var app: Result?
+    
     var appID: String! {
         didSet {
             print("Here is my app id: ", appID!)
@@ -17,7 +19,13 @@ class AppDetailController: VerticalController, UICollectionViewDelegateFlowLayou
             
             // Fetch Data
             Service.shared.fetchGenericJSONData(urlString: urlString) { (result: SearchResult?, err) in
-                print(result?.results.first?.formattedPrice ?? "")
+                
+                let app = result?.results.first
+                self.app = app
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
         }
     }
@@ -43,10 +51,21 @@ class AppDetailController: VerticalController, UICollectionViewDelegateFlowLayou
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellID, for: indexPath) as! AppDetailCell
         
+        cell.app = app
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 300)
+        
+        // Calculate the necessary size for our cell
+        let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: view.frame.width, height: 1000))
+        
+        dummyCell.app = app
+        dummyCell.layoutIfNeeded()
+        
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
+        
+        return .init(width: view.frame.width, height: estimatedSize.height)
     }
 }
