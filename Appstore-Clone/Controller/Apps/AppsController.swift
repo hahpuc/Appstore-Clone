@@ -47,8 +47,11 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Fetch Data
     fileprivate func fetchData() {
-        print("Tag: ","fetching new JSON data ...")
+        //print("Tag: ","fetching new JSON data ...")
         
+        var group1: AppGroup?
+        var group2: AppGroup?
+        var group3: AppGroup?
         
         // Help you sync your data fetches together
         let dispatchGroup = DispatchGroup()
@@ -56,13 +59,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         dispatchGroup.enter()
         Service.shared.fetchTopCrossing { (appGroup, err) in
             dispatchGroup.leave()
-            if let group = appGroup {
-                self.groups.append(group)
-            }
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            group1 = appGroup
             
             print("Done", " with Top Crossing")
         }
@@ -70,15 +67,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         dispatchGroup.enter()
         Service.shared.fetchFreeGames { (appGroup, err) in
             dispatchGroup.leave()
-            if let group = appGroup {
-                self.groups.append(group)
-            }
-            
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-
-            }
+            group2 = appGroup
             
             print("Done", " with Free Game")
 
@@ -87,15 +76,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         dispatchGroup.enter()
         Service.shared.fetchPaidGames() { (appGroup, err) in
             dispatchGroup.leave()
-            if let group = appGroup {
-                self.groups.append(group)
-            }
-            
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-
-            }
+            group3 = appGroup
             
             print("Done", " with Paid Game")
 
@@ -115,6 +96,17 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
             print("Done","Completed your dispatch group task")
             
             self.activityIndicatorView.stopAnimating()
+            
+            if let group = group1 {
+                self.groups.append(group)
+            }
+            if let group = group2 {
+                self.groups.append(group)
+            }
+            if let group = group3 {
+                self.groups.append(group)
+            }
+            self.collectionView.reloadData()
         }
     }
 

@@ -41,6 +41,10 @@ class AppsHeaderHorizontalController: HorizontalSnappingController, UICollection
 //        cell.titleLabel
 //        cell.imageView
         
+        cell.imageView.sd_setImage(with: URL(string: "https://img-9gag-fun.9cache.com/photo/aLwzjzz_700b.jpg"))
+        cell.titleLabel.text = "Code by Nguyen Thanh Long"
+        cell.companyLabel.text = "AppStore Clone"
+        
         return cell
     }
     
