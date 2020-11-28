@@ -13,7 +13,7 @@ This is just an iOS AppStore Clone App.
 - [x] UI: App Screen 
 - [ ] UI: Today Screen
 - [x] Search app
-- [ ] App Details
+- [X] App Details
 
 ## Screenshots
 
