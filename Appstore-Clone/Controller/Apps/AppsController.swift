@@ -22,6 +22,10 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         return aiv
     }()
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -140,6 +144,15 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         cell.titleLabel.text = groups[indexPath.row].feed.title
         cell.horizontalController.appGroup = groups[indexPath.row]
         cell.horizontalController.collectionView.reloadData()
+        
+        // Trans to App detail controller
+        cell.horizontalController.didSelecHandler = { [weak self] feedResult in
+            let detailController = AppDetailController()
+            detailController.navigationItem.title = feedResult.name
+            
+            self?.navigationController?.pushViewController(detailController, animated: true)
+        }
+        
         return cell
     }
     
