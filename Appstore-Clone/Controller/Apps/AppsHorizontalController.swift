@@ -33,6 +33,8 @@ class AppsHorizontalController: HorizontalSnappingController, UICollectionViewDe
         
     }
     
+    
+    // MARK: - Set up CollectionView
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return appGroup?.feed.results.count ?? 0
     }

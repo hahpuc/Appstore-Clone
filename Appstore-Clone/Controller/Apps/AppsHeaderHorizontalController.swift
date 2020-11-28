@@ -27,6 +27,7 @@ class AppsHeaderHorizontalController: HorizontalSnappingController, UICollection
         }
     }
     
+    // MARK: - Set up CollectionView
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3 //socialApps.count
     }

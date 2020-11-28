@@ -9,6 +9,7 @@ import UIKit
 
 class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
     
+    // MARK: - Declare
     fileprivate let cellID = "123dfas"
     fileprivate let headID = "HeadID"
     
@@ -148,8 +149,8 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         // Trans to App detail controller
         cell.horizontalController.didSelecHandler = { [weak self] feedResult in
             let detailController = AppDetailController()
+            detailController.appID = feedResult.id
             detailController.navigationItem.title = feedResult.name
-            
             self?.navigationController?.pushViewController(detailController, animated: true)
         }
         

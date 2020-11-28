@@ -64,7 +64,7 @@ class Service {
             if let err = err {
                 completion(nil, err)
                 return
-            }
+            } 
             
             guard let data = data else { return }
 
