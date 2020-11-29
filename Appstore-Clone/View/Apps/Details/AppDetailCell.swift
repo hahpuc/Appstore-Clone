@@ -18,6 +18,7 @@ class AppDetailCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Declare Variables
     let appIconImageView = UIImageView(cornerRadius: 16)
     
     let nameLabel = UILabel(text: "App Name", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
@@ -28,10 +29,19 @@ class AppDetailCell: UICollectionViewCell {
     
     let releaseNotesLabel = UILabel(text: "Release Notes", font: .systemFont(ofSize: 16), numberOfLines: 0)
     
+    let separateLine: UIImageView =  {
+        let imageView = UIImageView()
+        
+        imageView.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9333333333, alpha: 1)
+        imageView.constrainHeight(constant: 1)
+        
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        appIconImageView.backgroundColor = .red
+        //appIconImageView.backgroundColor = .red
         appIconImageView.constrainWidth(constant: 140)
         appIconImageView.constrainHeight(constant: 140)
         
@@ -52,6 +62,7 @@ class AppDetailCell: UICollectionViewCell {
                     UIView()
                 ], spacing: 12)
             ], customSpacing: 20),
+            separateLine,
             whatsNewLabel,
             releaseNotesLabel
         ], spacing: 16)

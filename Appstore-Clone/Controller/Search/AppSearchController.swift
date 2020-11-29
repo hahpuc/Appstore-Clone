@@ -23,6 +23,15 @@ class AppSearchController: VerticalController, UICollectionViewDelegateFlowLayou
         return label
     }()
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailController = AppDetailController()
+        detailController.appID = String(appResults[indexPath.row].trackId)
+        detailController.navigationController?.title = appResults[indexPath.row].trackName
+        
+        self.navigationController?.pushViewController(detailController, animated: true)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

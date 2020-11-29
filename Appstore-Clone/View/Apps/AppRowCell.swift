@@ -18,6 +18,16 @@ class AppRowCell: UICollectionViewCell {
     
     let getButton = UIButton(title: "GET")
     
+    let separateLine: UIImageView =  {
+        let imageView = UIImageView()
+        
+        imageView.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9333333333, alpha: 1)
+        imageView.constrainHeight(constant: 1)
+        
+        return imageView
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -33,15 +43,18 @@ class AppRowCell: UICollectionViewCell {
         
         let labelVerticalStackView = VerticalStackView(arrangedSubviews: [nameLabel, companyLabel], spacing: 4)
         
+        
         let stackView = UIStackView(arrangedSubviews: [
-            imageView, labelVerticalStackView, getButton
+            imageView,
+            labelVerticalStackView, getButton
         ])
         stackView.spacing = 16
         stackView.alignment = .center
         
         addSubview(stackView)
+    
         stackView.fillSuperview()
-        
+         
     }
     
     required init?(coder: NSCoder) {
