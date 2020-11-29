@@ -40,7 +40,7 @@ class PreviewScreenshotsController: HorizontalSnappingController, UICollectionVi
         
         collectionView.backgroundColor = .white
         collectionView.register(ScreenshowCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        //collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         
     }
     
@@ -62,6 +62,9 @@ class PreviewScreenshotsController: HorizontalSnappingController, UICollectionVi
         return .init(width: 250, height: view.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 0, left: 16, bottom: 0, right: 16)
+    }
     
 }
  
