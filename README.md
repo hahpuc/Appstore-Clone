@@ -5,7 +5,7 @@ This is just an iOS AppStore Clone App.
 ## Technologies
 
 - Swift 5
-- JSON APIs coming directly from Apple's iTunes Search API
+- JSON APIs coming directly from [Apple's iTunes Search API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)
 
 ## Task Lists
 
