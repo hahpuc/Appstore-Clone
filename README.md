@@ -20,4 +20,5 @@ This is just an iOS AppStore Clone App.
 <div>
   <img src="Images/appscreen.png" height = 400 width= 200 />
   <img src="Images/appdetail.png" height = 400 width= 200 />
+  <img src="Images/appsearch.png" height = 400 width= 200 />
 </div>
