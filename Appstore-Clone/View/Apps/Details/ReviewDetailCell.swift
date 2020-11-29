@@ -15,7 +15,25 @@ class ReviewDetailCell: UICollectionViewCell {
     
     let starLabel = UILabel(text: "Star", font: .systemFont(ofSize: 14))
     
-    let bodyLabel = UILabel(text: "Body label \nBody label \nBody label", font: .systemFont(ofSize: 16), numberOfLines: 0)
+    let bodyLabel = UILabel(text: "Body label \nBody label \nBody label", font: .systemFont(ofSize: 16), numberOfLines: 2)
+    
+    let starsStackView: UIStackView = {
+        
+        var arrangedImageView = [UIView]()
+        
+        for _ in 1...5 {
+            let imageView = UIImageView(image: #imageLiteral(resourceName: "star"))
+            imageView.constrainWidth(constant: 16)
+            imageView.constrainHeight(constant: 16)
+            arrangedImageView.append(imageView)
+        }
+        
+        arrangedImageView.append(UIView())
+        
+        let st = UIStackView(arrangedSubviews: arrangedImageView)
+        
+        return st
+    }()
     
     
     override init(frame: CGRect) {
@@ -28,14 +46,21 @@ class ReviewDetailCell: UICollectionViewCell {
         
         let stackView = VerticalStackView(arrangedSubviews: [
             UIStackView(arrangedSubviews: [
-                titleLabel, UIView(), authorLabel
-            ]),
-            starLabel,
-            bodyLabel
-        ], spacing: 16)
+                titleLabel, authorLabel
+            ], customSpacing: 8),
+            starsStackView,
+            bodyLabel,
+
+        ], spacing: 12)
+        
+        // Set titleLabel can't hide authorLabel
+        titleLabel.setContentCompressionResistancePriority(.init(0), for: .horizontal)
+        authorLabel.textAlignment = .right
         
         addSubview(stackView)
-        stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+//        stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+        
+        stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 20, left: 20, bottom: 0, right: 20))
     }
     
     required init?(coder: NSCoder) {

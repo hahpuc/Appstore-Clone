@@ -38,6 +38,12 @@ class ReviewController: HorizontalSnappingController, UICollectionViewDelegateFl
         cell.titleLabel.text = review?.title.label
         cell.bodyLabel.text = review?.content.label
         
+        for (index, view) in cell.starsStackView.arrangedSubviews.enumerated() {
+            if let ratingInt = Int(review!.rating.label) {
+                view.alpha = index >= ratingInt ? 0 : 1
+            }
+    
+        }
         
         return cell
     }

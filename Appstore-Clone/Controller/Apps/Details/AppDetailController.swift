@@ -50,6 +50,10 @@ class AppDetailController: VerticalController, UICollectionViewDelegateFlowLayou
 //                reviews?.feed.entry.forEach({ (author) in
 //                    print("review: ", author.author.name)
 //                })
+                
+                reviews?.feed.entry.forEach({ (Entry) in
+                    print("review", Entry.author.name, Entry.rating)
+                })
             }
             
             print("url ",reviewUrl)
@@ -136,5 +140,10 @@ class AppDetailController: VerticalController, UICollectionViewDelegateFlowLayou
         default:
             return .zero
         }
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 0, left: 0, bottom: 16, right: 0)
     }
 }

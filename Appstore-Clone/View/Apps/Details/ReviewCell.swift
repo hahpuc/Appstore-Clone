@@ -10,7 +10,7 @@ import UIKit
 
 class ReviewCell: UICollectionViewCell {
     
-    let reviewLabel = UILabel(text: "Review", font: .boldSystemFont(ofSize: 20))
+    let reviewLabel = UILabel(text: "Review & Ratings", font: .boldSystemFont(ofSize: 20))
     
     let reviewController = ReviewController()
     

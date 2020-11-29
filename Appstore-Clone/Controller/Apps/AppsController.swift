@@ -138,7 +138,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         cell.horizontalController.appGroup = groups[indexPath.row]
         cell.horizontalController.collectionView.reloadData()
         
-        // Trans to App detail controller
+        // Trans Data to App detail controller
         cell.horizontalController.didSelecHandler = { [weak self] feedResult in
             let detailController = AppDetailController()
             detailController.appID = feedResult.id
@@ -154,7 +154,8 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 16, left: 0, bottom: 0, right: 0)
+        return .init(top: 16, left: 0, bottom: 16, right: 0)
     }
+
     
 }
