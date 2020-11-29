@@ -18,7 +18,6 @@ This is just an iOS AppStore Clone App.
 ## Screenshots
 
 <div>
-  <img src="Images/appscreen.png" height = 350 width= 200 />
-  <img src="Images/appdetail.png" height = 350 width= 200 />
-  <img src="Images/appsearch.png" height = 350 width= 200 />
+  <img src="Images/appscreen.png" height = 400 width= 200 />
+  <img src="Images/appdetail.png" height = 400 width= 200 />
 </div>
