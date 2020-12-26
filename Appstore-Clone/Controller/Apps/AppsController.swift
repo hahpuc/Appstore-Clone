@@ -61,7 +61,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
             dispatchGroup.leave()
             group1 = appGroup
             
-            print("Done", " with Top Crossing")
+            //print("Done", " with Top Crossing")
         }
         
         dispatchGroup.enter()
@@ -69,7 +69,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
             dispatchGroup.leave()
             group2 = appGroup
             
-            print("Done", " with Free Game")
+            //print("Done", " with Free Game")
 
         }
         
@@ -78,7 +78,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
             dispatchGroup.leave()
             group3 = appGroup
             
-            print("Done", " with Paid Game")
+            //print("Done", " with Paid Game")
 
         }
         
@@ -93,7 +93,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
         
         // completion
         dispatchGroup.notify(queue: .main) {
-            print("Done","Completed your dispatch group task")
+            //print("Done","Completed your dispatch group task")
             
             self.activityIndicatorView.stopAnimating()
             

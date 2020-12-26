@@ -14,6 +14,8 @@ class AppSearchController: VerticalController, UICollectionViewDelegateFlowLayou
     
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     
+    fileprivate var appResults = [Result]()
+    
     fileprivate let enterSearchTermLabel: UILabel = {
         let label = UILabel()
         label.text = "Please enter search term above..."
@@ -83,7 +85,7 @@ class AppSearchController: VerticalController, UICollectionViewDelegateFlowLayou
         })
     }
     
-    fileprivate var appResults = [Result]()
+    
     
     // MARK: - Fetch Itune Search
     fileprivate func fetchITunesApps(){

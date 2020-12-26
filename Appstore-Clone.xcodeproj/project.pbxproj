@@ -24,6 +24,8 @@
 		414E685C2572501800BEC391 /* PreviewScreenshotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414E685B2572501800BEC391 /* PreviewScreenshotsController.swift */; };
 		414ED13B2522285C00B39728 /* VerticalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414ED13A2522285C00B39728 /* VerticalController.swift */; };
 		414F170B25708C7100C04BE2 /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414F170A25708C7100C04BE2 /* SocialApp.swift */; };
+		41592FDB2596E18B00AF8F7F /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41592FDA2596E18B00AF8F7F /* TodayController.swift */; };
+		41592FE02596E21F00AF8F7F /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41592FDF2596E21F00AF8F7F /* TodayCell.swift */; };
 		4175CD70257335C900721D70 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4175CD6F257335C900721D70 /* ReviewCell.swift */; };
 		4175CD752573372100721D70 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4175CD742573372100721D70 /* ReviewController.swift */; };
 		4175CD7A2573391800721D70 /* ReviewDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4175CD792573391800721D70 /* ReviewDetailCell.swift */; };
@@ -84,6 +86,8 @@
 		414E685B2572501800BEC391 /* PreviewScreenshotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsController.swift; sourceTree = "<group>"; };
 		414ED13A2522285C00B39728 /* VerticalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalController.swift; sourceTree = "<group>"; };
 		414F170A25708C7100C04BE2 /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
+		41592FDA2596E18B00AF8F7F /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
+		41592FDF2596E21F00AF8F7F /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		4175CD6F257335C900721D70 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		4175CD742573372100721D70 /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
 		4175CD792573391800721D70 /* ReviewDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailCell.swift; sourceTree = "<group>"; };
@@ -228,6 +232,22 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		41592FBD2596D8B400AF8F7F /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				41592FDA2596E18B00AF8F7F /* TodayController.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		41592FC62596D9A100AF8F7F /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				41592FDF2596E21F00AF8F7F /* TodayCell.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
 		4159D8E7256F3F0A0057DA48 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +270,7 @@
 		4190600A251D91FE003F4D4A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				41592FC62596D9A100AF8F7F /* Today */,
 				415742AC25222B77006A015C /* Search */,
 				414ED13F252228AA00B39728 /* Apps */,
 			);
@@ -355,6 +376,7 @@
 		41D29C1A251D8A1B00D8DE6F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				41592FBD2596D8B400AF8F7F /* Today */,
 				41B2F3B32570AC26005A75C2 /* BaseViewController */,
 				414ED136252227F600B39728 /* Search */,
 				414ED135252227EF00B39728 /* Apps */,
@@ -630,9 +652,11 @@
 				41B2F3DC2571F239005A75C2 /* AppDetailCell.swift in Sources */,
 				4175CD70257335C900721D70 /* ReviewCell.swift in Sources */,
 				4175CD7F257340CE00721D70 /* Reviews.swift in Sources */,
+				41592FE02596E21F00AF8F7F /* TodayCell.swift in Sources */,
 				41AD4396251DDF4700817674 /* VerticalStackView.swift in Sources */,
 				4175CD7A2573391800721D70 /* ReviewDetailCell.swift in Sources */,
 				4113A1BB252327C700E94139 /* AppsHeaderHorizontalController.swift in Sources */,
+				41592FDB2596E18B00AF8F7F /* TodayController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
