@@ -145,7 +145,7 @@ class AppsController: VerticalController, UICollectionViewDelegateFlowLayout {
             detailController.navigationItem.title = feedResult.name
             self?.navigationController?.pushViewController(detailController, animated: true)
         }
-        
+         
         return cell
     }
     

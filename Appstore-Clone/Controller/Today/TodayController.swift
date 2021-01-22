@@ -19,14 +19,19 @@ class TodayController: VerticalController, UICollectionViewDelegateFlowLayout {
         navigationController?.isNavigationBarHidden = true 
         collectionView.register(TodayCell.self, forCellWithReuseIdentifier: cellID)
     }
+
     
+    // MARK: - Handle Action
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let redView = UIView()
-        redView.backgroundColor = .red
+        let appFullscreen = AppFullscreenController()
+        let redView = appFullscreen.view!
+
         redView.layer.cornerRadius = 16
         redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedview)))
         view.addSubview(redView)
+        
+        addChild(appFullscreen)
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
@@ -36,8 +41,11 @@ class TodayController: VerticalController, UICollectionViewDelegateFlowLayout {
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             redView.frame = self.view.frame
+            
+            self.tabBarController?.tabBar.frame.origin.y += 100
+
         }, completion: nil)
-        
+         
     }
     
     var startingFrame: CGRect?
@@ -46,6 +54,10 @@ class TodayController: VerticalController, UICollectionViewDelegateFlowLayout {
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseOut) {
             gesture.view?.frame = self.startingFrame ?? .zero
+            
+            // Show the tabBar
+            self.tabBarController?.tabBar.frame.origin.y -= 100
+
         } completion: { _ in
             gesture.view?.removeFromSuperview()
 
@@ -53,6 +65,7 @@ class TodayController: VerticalController, UICollectionViewDelegateFlowLayout {
 
     }
     
+    // MARK: - Set up CollectionView
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
