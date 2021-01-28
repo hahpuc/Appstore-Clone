@@ -32,10 +32,14 @@ class TodayController: VerticalController, UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let appFullscreenController = AppFullscreenController()
+    
+        appFullscreenController.dismisHandle = { 
+            self.handleRemoveRedView()
+        }
 
-        let redView = appFullscreenController.view!
-        redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
-        view.addSubview(redView)
+        let fullScreenView = appFullscreenController.view!
+        fullScreenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
+        view.addSubview(fullScreenView)
 
         addChild(appFullscreenController)
         
@@ -50,16 +54,16 @@ class TodayController: VerticalController, UICollectionViewDelegateFlowLayout {
 
         // auto layout constraint animations
         // 4 anchors
-        redView.translatesAutoresizingMaskIntoConstraints = false
-        topConstraint = redView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
-        leadingConstraint = redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
-        widthConstraint = redView.widthAnchor.constraint(equalToConstant: startingFrame.width)
-        heightConstraint = redView.heightAnchor.constraint(equalToConstant: startingFrame.height)
+        fullScreenView.translatesAutoresizingMaskIntoConstraints = false
+        topConstraint = fullScreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
+        leadingConstraint = fullScreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
+        widthConstraint = fullScreenView.widthAnchor.constraint(equalToConstant: startingFrame.width)
+        heightConstraint = fullScreenView.heightAnchor.constraint(equalToConstant: startingFrame.height)
         
         [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach({$0?.isActive = true})
         self.view.layoutIfNeeded()
         
-        redView.layer.cornerRadius = 16
+        fullScreenView.layer.cornerRadius = 16
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
 
@@ -80,6 +84,9 @@ class TodayController: VerticalController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Set up Remove Animation
     @objc func handleRemoveRedView() {
+        
+        print("Remove Animation")
+        
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
             self.appFullscreenController.tableView.showsVerticalScrollIndicator = false

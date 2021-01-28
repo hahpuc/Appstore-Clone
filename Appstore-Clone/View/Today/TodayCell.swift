@@ -19,8 +19,8 @@ class TodayCell: UICollectionViewCell {
         layer.cornerRadius = 16
         
         addSubview(imageView)
-        imageView.contentMode = .scaleToFill
-        imageView.centerInSuperview(size: .init(width: 250, height: 250))
+        imageView.contentMode = .scaleAspectFill
+        imageView.centerInSuperview(size: .init(width: 240, height: 240))
         
     }
     
