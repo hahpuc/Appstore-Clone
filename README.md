@@ -1,6 +1,7 @@
 ## About Project
 
-This is just an iOS AppStore Clone App.
+👋 This is just an iOS AppStore Clone App.
+With this app, you can search for many Apps and top trending Apps at the moment
 
 ## Technologies
 
